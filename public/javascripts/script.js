@@ -9,6 +9,14 @@ lock.on("authenticated", function(authResult) {
   localStorage.setItem('id_token', authResult.idToken);
 });
 
+$.ajaxSetup({
+  'beforeSend': function(xhr) {
+    if (localStorage.getItem('id_token')) {
+      xhr.setRequestHeader('Authorization',
+            'Bearer ' + localStorage.getItem('id_token'));
+    }
+  }
+});
 
 $(document).on('click', '#login-cta', function (e) {
   e.preventDefault();
