@@ -7,6 +7,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var jwt = require('express-jwt');
+
+var authenticate = jwt({
+  secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, 'base64'),
+  audience: process.env.AUTH0_CLIENT_ID
+});
 
 mongoose.connect(process.env.MONGO_CONNECTION)
 
@@ -26,6 +32,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api/v1', authenticate);
 
 app.use('/', routes);
 app.use('/api/v1/todos', todos);
