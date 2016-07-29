@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
@@ -8,8 +9,10 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
+    <button id="login-cta">Login</button>
     <button id="todos-cta">Load Todos</button>
 
+    <script src="//cdn.auth0.com/js/lock/10.0/lock.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="/javascripts/script.js" charset="utf-8"></script>
   </body>
