@@ -5,6 +5,11 @@ var lock = new Auth0Lock('hEbMPdgCeruBufyJJiTKCkomgagGSs0g', 'trailerparkmedia.a
   }
 );
 
+lock.on("authenticated", function(authResult) {
+  localStorage.setItem('id_token', authResult.idToken);
+});
+
+
 $(document).on('click', '#login-cta', function (e) {
   e.preventDefault();
 
